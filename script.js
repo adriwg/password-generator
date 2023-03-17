@@ -96,18 +96,37 @@ var user_selected_types_of_characters = [];
 function getPasswordOptions() {
   var length_password = prompt("Please enter the length of the password you would like to generate:");
   if(length_password <8 || length_password >128){
+    // if length_password  is less than 8 or greater than 128
     alert("Password must have at least 8 characters and no more than 128 characters.");
   }else {
+    //Prompt the user if they want the password to include lowercase characters
     var includes_lowercase_characters = confirm("Do you want the password to include lowercase characters?");
     if(includes_lowercase_characters){
+      // if the user's response is true
       user_selected_types_of_characters = user_selected_types_of_characters.concat(lowerCasedCharacters);
       console.log("user_selected_types_of_characters:",user_selected_types_of_characters);
     }
+    //Prompt the user if they want the password to include lowercase characters
     var includes_uppercase_characters = confirm("Do you want the password to include uppercase characters?");
+    // if the user's response is true
     if(includes_uppercase_characters){
       user_selected_types_of_characters = user_selected_types_of_characters.concat(upperCasedCharacters);
       console.log("user_selected_types_of_characters:",user_selected_types_of_characters);
     }
+     //Prompt the user if they want the password to include numeric characters
+     var includes_numeric_characters = confirm("Do you want the password to include numeric characters?");
+     // if the user's response is true
+     if(includes_numeric_characters){
+       user_selected_types_of_characters = user_selected_types_of_characters.concat(numericCharacters);
+       console.log("user_selected_types_of_characters:",user_selected_types_of_characters);
+     }
+     //Prompt the user if they want the password to include special characters
+     var includes_special_characters = confirm("Do you want the password to include special characters?");
+     // if the user's response is true
+     if(includes_special_characters){
+       user_selected_types_of_characters = user_selected_types_of_characters.concat(specialCharacters);
+       console.log("user_selected_types_of_characters:",user_selected_types_of_characters);
+     }
     
   }
 
