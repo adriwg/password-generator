@@ -105,6 +105,8 @@ function getPasswordOptions() {
       // if the user's response is true
       user_selected_types_of_characters = user_selected_types_of_characters.concat(lowerCasedCharacters);
       console.log("user_selected_types_of_characters:",user_selected_types_of_characters);
+    }else{
+      console.log("false");
     }
     //Prompt the user if they want the password to include lowercase characters
     var includes_uppercase_characters = confirm("Do you want the password to include uppercase characters?");
@@ -125,8 +127,23 @@ function getPasswordOptions() {
      // if the user's response is true
      if(includes_special_characters){
        user_selected_types_of_characters = user_selected_types_of_characters.concat(specialCharacters);
+       getRandom(user_selected_types_of_characters);
        console.log("user_selected_types_of_characters:",user_selected_types_of_characters);
+     }else{
+      // if user do not choose any type of character, then prompt the user to choose either continues to generate a password with special characters or start again the process
+      if(!includes_lowercase_characters && !includes_uppercase_characters && !includes_numeric_characters){
+        console.log("includes_special_characters is false");
+        var confirm_continue = confirm("Password must have at least one character type. Continues to generate a password or start again?");
+        if(confirm_continue){
+          user_selected_types_of_characters = user_selected_types_of_characters.concat(specialCharacters);
+          getRandom(user_selected_types_of_characters);
+        }else{
+          reset_user_selected_types_of_characters();
+        }
+        
+       }
      }
+     
     
   }
 
@@ -153,6 +170,11 @@ function writePassword() {
   var passwordText = document.querySelector('#password');
 
   passwordText.value = password; */
+}
+
+// Reset user_selected_types_of_characters array to empty array 
+function reset_user_selected_types_of_characters() {
+  user_selected_types_of_characters = [];
 }
 
 // Add event listener to generate button
