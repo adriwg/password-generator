@@ -90,6 +90,10 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
+  var length_password = prompt("Please enter the length of the password you would like to generate:");
+  if(length_password <8 || length_password >128){
+    alert("Password must have at least 8 characters and no more than 128 characters.");
+  }
 
 }
 
@@ -108,10 +112,11 @@ var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  getPasswordOptions();
+/*   var password = generatePassword();
   var passwordText = document.querySelector('#password');
 
-  passwordText.value = password;
+  passwordText.value = password; */
 }
 
 // Add event listener to generate button
