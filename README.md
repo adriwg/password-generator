@@ -2,8 +2,8 @@
 
 ## Description
 
-Using JavaScript to create a password generator app. The app provides users with the flexibility to customize their password by specifying its length and the types of characters they would like to include, such as lowercase and uppercase letters, numbers, and special characters.
-[Link text](https://adriwg.github.io/password-generator/)
+Using JavaScript to create a password generator app. The app provides users with the flexibility to customize their password by specifying its length and the types of characters they would like to include, such as lowercase and uppercase letters, numbers, and special characters.  
+[Link to the app](https://adriwg.github.io/password-generator/)
 
 ## Installation
 
