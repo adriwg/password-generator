@@ -92,72 +92,73 @@ var upperCasedCharacters = [
 // Array holds the characters which the user wants to include in the password
 var user_selected_types_of_characters = [];
 
+// Variable holds the password length
+var length_password="";
+
+var passwordText = document.querySelector('#password');
+
 // Function to prompt user for password options
 function getPasswordOptions() {
-  var length_password = prompt("Please enter the length of the password you would like to generate:");
-  if(length_password <8 || length_password >128){
+  reset_user_selected_types_of_characters();
+  length_password = prompt("Please enter the length of the password you would like to generate:");
+  if(Number(length_password) <8 || Number(length_password) >128){
     // if length_password  is less than 8 or greater than 128
-    alert("Password must have at least 8 characters and no more than 128 characters.");
+    alert("The password must be between 8 and 128 characters long.");
+    length_password ="";
   }else {
     //Prompt the user if they want the password to include lowercase characters
     var includes_lowercase_characters = confirm("Do you want the password to include lowercase characters?");
     if(includes_lowercase_characters){
       // if the user's response is true
       user_selected_types_of_characters = user_selected_types_of_characters.concat(lowerCasedCharacters);
-      console.log("user_selected_types_of_characters:",user_selected_types_of_characters);
-    }else{
-      console.log("false");
     }
     //Prompt the user if they want the password to include lowercase characters
     var includes_uppercase_characters = confirm("Do you want the password to include uppercase characters?");
     // if the user's response is true
     if(includes_uppercase_characters){
       user_selected_types_of_characters = user_selected_types_of_characters.concat(upperCasedCharacters);
-      console.log("user_selected_types_of_characters:",user_selected_types_of_characters);
     }
      //Prompt the user if they want the password to include numeric characters
      var includes_numeric_characters = confirm("Do you want the password to include numeric characters?");
      // if the user's response is true
      if(includes_numeric_characters){
        user_selected_types_of_characters = user_selected_types_of_characters.concat(numericCharacters);
-       console.log("user_selected_types_of_characters:",user_selected_types_of_characters);
      }
      //Prompt the user if they want the password to include special characters
      var includes_special_characters = confirm("Do you want the password to include special characters?");
      // if the user's response is true
      if(includes_special_characters){
        user_selected_types_of_characters = user_selected_types_of_characters.concat(specialCharacters);
-       getRandom(user_selected_types_of_characters);
-       console.log("user_selected_types_of_characters:",user_selected_types_of_characters);
+       generatePassword();
      }else{
       // if user do not choose any type of character, then prompt the user to choose either continues to generate a password with special characters or start again the process
       if(!includes_lowercase_characters && !includes_uppercase_characters && !includes_numeric_characters){
-        console.log("includes_special_characters is false");
         var confirm_continue = confirm("Password must have at least one character type. Continues to generate a password or start again?");
         if(confirm_continue){
           user_selected_types_of_characters = user_selected_types_of_characters.concat(specialCharacters);
-          getRandom(user_selected_types_of_characters);
+          generatePassword();
         }else{
           reset_user_selected_types_of_characters();
         }
-        
        }
      }
-     
-    
   }
-
-
 }
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-
+  var index = Math.floor(Math.random() * arr.length);
+  var element = arr[index];
+  return element;
 }
 
 // Function to generate password with user input
 function generatePassword() {
-
+  var pswd = "";
+  for(var i = 0; i < Number(length_password); i++){
+    pswd += getRandom(user_selected_types_of_characters);
+  }
+  return pswd;
 }
 
 // Get references to the #generate element
@@ -166,10 +167,9 @@ var generateBtn = document.querySelector('#generate');
 // Write password to the #password input
 function writePassword() {
   getPasswordOptions();
-/*   var password = generatePassword();
-  var passwordText = document.querySelector('#password');
-
-  passwordText.value = password; */
+  if(length_password != ""){
+    passwordText.value = generatePassword();
+  }
 }
 
 // Reset user_selected_types_of_characters array to empty array 
