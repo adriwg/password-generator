@@ -118,7 +118,7 @@ function getPasswordOptions() {
       // if the user's response is true
       user_selected_types_of_characters.push(lowerCasedCharacters);
     }
-    //Prompt the user if they want the password to include lowercase characters
+    //Prompt the user if they want the password to include uppercase characters
     var includes_uppercase_characters = confirm("Do you want the password to include uppercase characters?");
     // if the user's response is true
     if(includes_uppercase_characters){
@@ -137,7 +137,7 @@ function getPasswordOptions() {
        user_selected_types_of_characters.push(specialCharacters);
        generatePassword();
      }else{
-      // if user do not choose any type of character, then prompt the user to choose either continues to generate a password with special characters or start again the process
+      // if user does not choose any types of character, then prompt the user to choose either continues to generate a password with special characters or start again the process
       if(!includes_lowercase_characters && !includes_uppercase_characters && !includes_numeric_characters){
         var confirm_continue = confirm("Password must have at least one character type. Continues to generate a password or start again?");
         if(confirm_continue){
@@ -151,7 +151,7 @@ function getPasswordOptions() {
   }
 }
 
-// // Function to generate password with user input
+// Function to generate password with user input
 function generatePassword() {
   var pswd = "";
    var count = length_password;
